@@ -15,13 +15,13 @@
 
 import pinutils;
 info = {
- 'name' : "Espruino Board rev 1.3/1.4",
+ 'name' : "AzpruinoBoard",
  'link' : [ "http://www.espruino.com/EspruinoBoard" ],
  'espruino_page_link' : "AzpruinoBoard",
  'default_console' : "EV_SERIAL1",
  'default_console_tx' : "A9",
  'default_console_rx' : "A10",
- 'variables' : 3274,
+ 'variables' : 3264,
  'bootloader' : 1,
  'serial_bootloader' : True,
  'binary_name' : 'espruino_%v_azpruino_1r3.bin',
@@ -30,14 +30,23 @@ info = {
   { 'filename' : 'espruino_%v_azpruino_1r3.bin', 'description' : "TI CC3000 WiFi Networking"},
  ],
  'build' : {
-   'defines' : [
-     'USE_NET',
-     'USE_GRAPHICS',
-     'USE_TV',
-     'USE_HASHLIB',
-     'USE_FILESYSTEM'
+   'optimizeflags' : '-Os',
+   'libraries' : [
+     'NET',
+     'GRAPHICS',
+     'NEOPIXEL',
+     'HASHLIB',
+#     'CRYPTO', # not enough flash memory with WIZnet included
+#     'TV', # TV had to be removed because of flash usage
+     'FILESYSTEM'
+   ],
+   'makefile' : [
+     'DEFINES+=-DESPRUINO_1V3',
+     'DEFINES+=-DSAVE_ON_FLASH_MATH', 
+     'STLIB=STM32F10X_XL',
+     'PRECOMPILED_OBJS+=$(ROOT)/targetlibs/stm32f1/lib/startup_stm32f10x_hd.o'
    ]
- }
+  }
 };
 chip = {
   'part' : "STM32F103RDT6",
@@ -52,20 +61,11 @@ chip = {
   'adc' : 3,
   'dac' : 2,
   'saved_code' : {
-    'address' : 0x08000000 + ((384-40)*1024),
+    'address' : 0x08000000 + ((384-30)*1024),
     'page_size' : 2048, # size of pages
     'pages' : 20, # number of pages we're using
-    'flash_available' : 384-40 # 30 used for code
-  },
- 'build' : {
-   'defines' : [
-     'USE_NET',
-     'USE_GRAPHICS',
-     'USE_TV',
-     'USE_HASHLIB',
-     'USE_FILESYSTEM'
-   ]
- }
+    'flash_available' : 384-(30+10) # 40k used for code, 10k for bootloader
+  }
 };
 devices = {
   'OSC' : { 'pin_in' :  'D0',
