@@ -16,7 +16,7 @@
 import pinutils;
 info = {
  'name' : "AzpruinoBoard",
- 'link' : [ "http://www.espruino.com/EspruinoBoard" ],
+ 'link' : [ "http://drazzy.com/e/espruino/Azpruino/" ],
  'espruino_page_link' : "AzpruinoBoard",
  'default_console' : "EV_SERIAL1",
  'default_console_tx' : "A9",
@@ -24,10 +24,10 @@ info = {
  'variables' : 3264,
  'bootloader' : 1,
  'serial_bootloader' : True,
- 'binary_name' : 'espruino_%v_azpruino_1r3.bin',
+ 'binary_name' : 'espruino_%v_azpruino.bin',
  'binaries' : [
-  { 'filename' : 'espruino_%v_azpruino_1r3_wiznet.bin', 'description' : "WIZNet W5500 Ethernet Networking"},
-  { 'filename' : 'espruino_%v_azpruino_1r3.bin', 'description' : "TI CC3000 WiFi Networking"},
+  { 'filename' : 'espruino_%v_azpruino_wiznet.bin', 'description' : "WIZNet W5500 Ethernet Networking"},
+  { 'filename' : 'espruino_%v_azpruino.bin', 'description' : "TI CC3000 WiFi Networking"},
  ],
  'build' : {
    'optimizeflags' : '-Os',
