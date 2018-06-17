@@ -211,6 +211,12 @@ void initHardware() {
   GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE); // Disable JTAG/SWD so pins are available
 #endif
 #endif
+#ifdef AZPRUINOBOARD
+#ifndef DEBUG
+  // reclaim A13 and A14 for the LEDs
+  GPIO_PinRemapConfig(GPIO_Remap_SWJ_Disable, ENABLE); // Disable JTAG/SWD so pins are available
+#endif
+#endif
 
  jshPinOutput(LED1_PININDEX, 1);
 
