@@ -61,10 +61,10 @@ chip = {
   'adc' : 3,
   'dac' : 2,
   'saved_code' : {
-    'address' : 0x08000000 + ((384-30)*1024),
+    'address' : 0x08000000 + ((384-32)*1024),
     'page_size' : 2048, # size of pages
-    'pages' : 15, # number of pages we're using
-    'flash_available' : 384-(30+10) # 40k used for code, 10k for bootloader
+    'pages' : 16, # number of pages we're using
+    'flash_available' : 384-(32+10) # 40k used for code, 10k for bootloader
   }
 };
 devices = {
